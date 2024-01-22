@@ -44,3 +44,36 @@
         return minStack.Count > 0 ? minStack.Peek() : -1;
     }
 }
+
+
+//Question 2: Determine if a string has balanced parentheses.
+public class ParenthesesValidator
+{
+    public static bool IsValid(string s)
+    {
+        Stack<char> stack = new Stack<char>();
+
+        foreach (char c in s)
+        {
+            if (c == '(' || c == '{' || c == '[')
+            {
+                stack.Push(c);
+            }
+            else if (c == ')' && (stack.Count == 0 || stack.Pop() != '('))
+            {
+                return false;
+            }
+            else if (c == '}' && (stack.Count == 0 || stack.Pop() != '{'))
+            {
+                return false;
+            }
+            else if (c == ']' && (stack.Count == 0 || stack.Pop() != '['))
+            {
+                return false;
+            }
+        }
+
+        return stack.Count == 0;
+    }
+}
+
